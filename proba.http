@@ -1,0 +1,6 @@
+@proba_HostAddress = http://localhost:5209
+
+GET {{proba_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
