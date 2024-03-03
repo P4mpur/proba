@@ -1,3 +1,7 @@
+# NAPOMENA
+
+## Preuzimanje i scaffold rade samo na domsku mrezu, ako oces na neko drugo mesto da pristupis, moras da zadas preko NETWORKING u azure porta
+
 ### E Pazi Sad bajco sta ce radis
 <picture>
  <img alt="YOUR-ALT-TEXT" src="https://imgs.search.brave.com/GMRjYRAAGOH9HuY4PNo2ijS_Myntd0S2_NHbY7YugNk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWNvbW1lbnRz/LmNvbS9kYzIvMDMv/MTg5ODU2LzE4OTg1/Ni5KUEc">
