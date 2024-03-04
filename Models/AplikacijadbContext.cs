@@ -17,16 +17,16 @@ public class AplikacijadbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Reservation>().HasKey(e => new { e.UID, e.ObjID });
+        modelBuilder.Entity<Reservation>().HasKey(e => new { e.UserID, e.ObjectID });
 
-        modelBuilder.Entity<Reservation>().HasOne(e => e.User).WithMany(q => q.Reservations).HasForeignKey(e => e.UID).HasConstraintName("Reservation_UserCT").IsRequired();
-        modelBuilder.Entity<Reservation>().HasOne(e => e.Object).WithMany(u => u.Reservations).HasForeignKey(e => e.ObjID).HasConstraintName("Reservation_ObjectCT").IsRequired();
+        modelBuilder.Entity<Reservation>().HasOne(e => e.User).WithMany(q => q.Reservations).HasForeignKey(e => e.UserID).HasConstraintName("Reservation_UserCT").IsRequired();
+        modelBuilder.Entity<Reservation>().HasOne(e => e.Object).WithMany(u => u.Reservations).HasForeignKey(e => e.ObjectID).HasConstraintName("Reservation_ObjectCT").IsRequired();
 
 
-        modelBuilder.Entity<Feedback>().HasKey(e => new { e.UID, e.ObjID });
+        modelBuilder.Entity<Feedback>().HasKey(e => new { e.UserID, e.ObjectID });
 
-        modelBuilder.Entity<Feedback>().HasOne(e => e.User).WithMany(q => q.Feedbacks).HasForeignKey(e => e.UID).HasConstraintName("Feedback_UserCT").IsRequired();
-        modelBuilder.Entity<Feedback>().HasOne(e => e.Object).WithMany(u => u.Feedbacks).HasForeignKey(e => e.ObjID).HasConstraintName("Feedback_ObjectCT").IsRequired();
+        modelBuilder.Entity<Feedback>().HasOne(e => e.User).WithMany(q => q.Feedbacks).HasForeignKey(e => e.UserID).HasConstraintName("Feedback_UserCT").IsRequired();
+        modelBuilder.Entity<Feedback>().HasOne(e => e.Object).WithMany(u => u.Feedbacks).HasForeignKey(e => e.ObjectID).HasConstraintName("Feedback_ObjectCT").IsRequired();
 
 
     }

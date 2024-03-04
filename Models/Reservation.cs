@@ -14,8 +14,8 @@ public class Reservation
     public DateTime DateTo { get; set; }
 
     public User? User { get; set; }
-    public int UID { get; set; }
+    public int UserID { get; set; }
     public MyObject? Object { get; set; }
-    public int ObjID { get; set; }
+    public int ObjectID { get; set; }
 
 }

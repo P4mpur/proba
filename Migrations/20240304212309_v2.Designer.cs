@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using proba.Models;
 
@@ -11,9 +12,11 @@ using proba.Models;
 namespace proba.Migrations
 {
     [DbContext(typeof(AplikacijadbContext))]
-    partial class AplikacijadbContextModelSnapshot : ModelSnapshot
+    [Migration("20240304212309_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,13 +27,16 @@ namespace proba.Migrations
 
             modelBuilder.Entity("proba.Models.Feedback", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("UID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ObjectID")
+                    b.Property<int>("ObjID")
                         .HasColumnType("int");
 
                     b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ObjectID")
                         .HasColumnType("int");
 
                     b.Property<float>("Ocena")
@@ -39,9 +45,12 @@ namespace proba.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserID", "ObjectID");
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ObjectID");
+                    b.HasKey("UID", "ObjID");
+
+                    b.HasIndex("ObjID");
 
                     b.ToTable("Feedbacks");
                 });
@@ -75,10 +84,10 @@ namespace proba.Migrations
 
             modelBuilder.Entity("proba.Models.Reservation", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("UID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ObjectID")
+                    b.Property<int>("ObjID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateFrom")
@@ -90,9 +99,15 @@ namespace proba.Migrations
                     b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.HasKey("UserID", "ObjectID");
+                    b.Property<int?>("ObjectID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ObjectID");
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UID", "ObjID");
+
+                    b.HasIndex("ObjID");
 
                     b.ToTable("Reservations");
                 });
@@ -122,14 +137,14 @@ namespace proba.Migrations
                 {
                     b.HasOne("proba.Models.MyObject", "Object")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("ObjectID")
+                        .HasForeignKey("ObjID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("Feedback_ObjectCT");
 
                     b.HasOne("proba.Models.User", "User")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("UID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("Feedback_UserCT");
@@ -152,14 +167,14 @@ namespace proba.Migrations
                 {
                     b.HasOne("proba.Models.MyObject", "Object")
                         .WithMany("Reservations")
-                        .HasForeignKey("ObjectID")
+                        .HasForeignKey("ObjID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("Reservation_ObjectCT");
 
                     b.HasOne("proba.Models.User", "User")
                         .WithMany("Reservations")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("UID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("Reservation_UserCT");
